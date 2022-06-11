@@ -9,7 +9,7 @@ VER=2.15.1
 
 ## Read config
 if [ -z $config ]; then
-  config="`dirname $0`/tur-request.conf"
+  config="`dirname $0`/../etc/tur-request.conf"
 fi
 if [ ! -r $config ]; then
   echo "Error. Can not read $config"
@@ -863,6 +863,7 @@ proc_request() {
     for each in `cat $reqfile | tr -s ' ' '^'`; do
       num=$[$num+1]
     done
+    gl_num=$num
 
     if [ "$max_requests" ]; then
       if [ "`cat $reqfile | wc -l | tr -d ' '`" -ge "$max_requests" ]; then
@@ -910,7 +911,15 @@ proc_request() {
           fi
 
           ## Announce it.
-          proc_output "$OUTPUT"
+          if [ "$mode" = "gl" ]; then
+            if [ "$FOR" ]; then
+              proc_glout "REQNEW2: \"$WHAT\" \"$gl_num\" \"$BY\" \"$FOR\""
+            else
+              proc_glout "REQNEW1: \"$WHAT\" \"$gl_num\" \"$BY\""
+            fi
+          else
+            proc_output "$OUTPUT"
+          fi
 
           ## If a reward was added, announce that as well.
           if [ "$REWARD" ]; then
@@ -1278,7 +1287,24 @@ proc_reqfilled() {
             mode="gl"
           fi
 
-          proc_output "$OUTPUT"
+          if [ "$mode" = "gl" ]; then
+            case $ACTION in
+              reqdelled)
+                proc_glout "REQDEL: \"$RELEASE\" \"$WHAT\" \"$BY\""
+                ;;
+              reqwiped)
+                proc_glout "REQWIPE: \"$RELEASE\" \"$WHAT\" \"$BY\""
+                ;;
+              reqfilled)
+                proc_glout "REQFILL: \"$RELEASE\" \"$WHAT\" \"$BY\""
+                ;;
+              *)
+                proc_glout "REQFILL: \"$RELEASE\" \"$WHAT\" \"$BY\""
+                ;;
+            esac
+          else
+            proc_output "$OUTPUT"
+          fi
           if [ "$REWARD_LIST" ]; then
             OUTPUT="$FILLANNOUNCE_REWARD"
             proc_cookies

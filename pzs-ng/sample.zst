@@ -1,0 +1,5 @@
+announce.REQNEW1                                = "Request: %b{%username} adds a new request [%b{%num}: %b{%releasename}]."
+announce.REQNEW2                                = "Request: %b{%username} adds a new request for %b{%for} [%b{%num}: %b{%releasename}]."
+announce.REQDEL                                 = "Request: %b{%username} deleted request [%b{%num}: %b{%releasename}]."
+announce.REQWIPE                                = "Request: %b{%username} wiped request [%b{%num}: %b{%releasename}]."
+announce.REQFILL                                = "Request: %b{%username} filled request [%b{%num}: %b{%releasename}]."

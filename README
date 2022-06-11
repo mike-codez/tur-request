@@ -66,48 +66,9 @@
 # custom-reqwipe         1
 #--                                                           --#
 #                                                               #
-#-[ zipscript-c / pzs-ng settings ]-----------------------------#
+#-[ pzs-ng settings ]-------------------------------------------#
 #                                                               #
-# To make this mofo announce, We need to add some things.       #
-# If you are using the old dark0n3s zipscript, the following    #
-# goes to dZSbot.tcl.                                           #
-# If you are using pzs-ng, it goes into dZSconf.tcl             #
-# Note: If you are using a newer version of pzs-ng, you do not  #
-#       need to do anything. TURGEN is already in the new       #
-#       versions. Forgot exact build, but its in 1.0.1811 for   #
-#       sure. Skip these instructions if so.                    #
-#                                                               #
-# Note: Depending on version, set msgtypes(DEFAULT) might not   #
-#       exist in dZSconf.tcl. If so, find it in                 #
-#       dZSbconf.defaults.tcl, copy it into dZSconf.tcl and     #
-#       then add TURGEN to set msgtypes(DEFAULT) in dZSconf.tcl #
-#                                                               #
-# Check first that TURGEN is not already added. Its used for a  #
-# few other scripts as well.                                    #
-#                                                               #
-# To 'set msgtypes(DEFAULT)', add TURGEN                        #
-#                                                               #
-# Add the following in the appropriate places:                  #
-#--                                                           --#
-# set chanlist(TURGEN) "#YourChan"
-#
-# set disable(TURGEN) 0
-#
-# set variables(TURGEN) "%msg"
-#
-# If you are using Dark0n3s dZSbot.tcl, this goes to dZSbot.tcl 
-# as well:                                                      
-# set announce(TURGEN)  "%msg"
-#
-# If, however, you are using pzs-ng (beta3 or higher), then
-# this goes to your current theme file:
-# announce.TURGEN = "%msg"
-#                                                             --#
-#-[ SS5 settings ]----------------------------------------------#
-#                                                               #
-# To make it announce when using SiteStat5, simply replace      #
-# TURGEN: with RAW: in all occurances of the .conf and the .sh  #
-# Nothing more should be required.                              #
+# Check pzs-ng folder for configuration and theme file examples #
 #                                                               #
 #-[ Other Instructions (READ THESE) ]---------------------------#
 #                                                               #
